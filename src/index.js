@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Wheel from "./components/wheel";
-import { Alert } from "react-native";
 
 import "./styles.css";
 
