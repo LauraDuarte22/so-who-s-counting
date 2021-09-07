@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Wheel from "./components/wheel";
+import { Alert } from "react-native";
 
 import "./styles.css";
 
 export default function App() {
+  const position = [1, 2, 3, 4, 5];
   const [valorRueda, setValorRueda] = useState();
   const places = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  const position = [1, 2, 3, 4, 5];
   const [pc, setPc] = useState(["■", "■", "■", "■", "■"]);
   const [player, setPlayer] = useState(["■", "■", "■", "■", "■"]);
   let [contPc, setContPc] = useState(0);
@@ -23,6 +24,36 @@ export default function App() {
     [1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1]
   ];
+
+  const pcEstrategia = (contPc) => {
+    let pos = matrizEstrategia[valorRueda][contPc];
+    let casillasVacias = 0;
+    for (var i = 0; i < pc.length; i++) {
+      if (pc[i] === "■") {
+        casillasVacias++;
+      }
+      if (pos === casillasVacias) {
+        pc[i] = valorRueda;
+        setPc(pc);
+        break;
+      }
+    }
+  };
+
+  const resultado = () => {
+    setTimeout(function () {
+      if (pc > player) alert("Gana pc");
+      else if (player > pc) alert("Gana player");
+      else alert("Empate");
+    }, 1000);
+  };
+
+  const restart = () => {
+    setTimeout(function () {
+      setPc(["■", "■", "■", "■", "■"]);
+      setPlayer(["■", "■", "■", "■", "■"]);
+    }, 1000);
+  };
 
   const handleClick = (value) => {
     switch (value) {
@@ -41,11 +72,13 @@ export default function App() {
           alert("Esta casilla ya está ocupada");
         }
         break;
+
       case 2:
         if (valorRueda == null) {
           alert("Gire la rueda primero");
           break;
         }
+
         if (player[1] === "■") {
           player[1] = valorRueda;
           setPlayer(player);
@@ -61,6 +94,7 @@ export default function App() {
           alert("Gire la rueda primero");
           break;
         }
+
         if (player[2] === "■") {
           player[2] = valorRueda;
           setPlayer(player);
@@ -70,6 +104,7 @@ export default function App() {
         } else {
           alert("Esta casilla ya está ocupada");
         }
+
         break;
       case 4:
         if (valorRueda == null) {
@@ -88,9 +123,10 @@ export default function App() {
         break;
       case 5:
         if (valorRueda == null) {
-          alert("Gire la rueda primero");
+          alert("Gire la rueda");
           break;
         }
+
         if (player[4] === "■") {
           player[4] = valorRueda;
           setPlayer(player);
@@ -98,34 +134,17 @@ export default function App() {
           contPc++;
           setContPc(contPc);
         } else {
-          msjAlert("Esta casilla ya está ocupada");
+          alert("Esta casilla ya está ocupada");
         }
         break;
       default:
     }
-  };
-  const pcEstrategia = (contPc) => {
-    let pos = matrizEstrategia[valorRueda][contPc];
-    let casillasVacias = 0;
-    for (var i = 0; i < pc.length; i++) {
-      if (pc[i] === "■") {
-        casillasVacias++;
-      }
-      if (pos === casillasVacias) {
-        pc[i] = valorRueda;
-        setPc(pc);
-        break;
-      }
+    if (contPc === 5) {
+      resultado();
+      restart();
     }
   };
-  const resultado = () => {
-    if (pc > player) alert("Gana pc");
-    else if (player > pc) alert("Gana player");
-    else alert("Empate");
-  };
-  const msjAlert = (msj) => {
-    msj.Dialog();
-  };
+
   return (
     <div className="App">
       <h1>SO WHO’S COUNTING</h1>
@@ -133,7 +152,7 @@ export default function App() {
       <h1>El resultado es: {valorRueda}</h1>
       <Wheel items={places} setValorRueda={setValorRueda} />
       <div className="game">
-        <h2>Usuario</h2>
+        <h1>Jugador</h1>
         {player.map((choice, index) => (
           <li key={index}>{choice}</li>
         ))}
@@ -143,7 +162,7 @@ export default function App() {
             {choice}
           </button>
         ))}
-        <h1>PC</h1>
+        <h1>pc</h1>
         {pc.map((choice, index) => (
           <li key={index}>{choice}</li>
         ))}
