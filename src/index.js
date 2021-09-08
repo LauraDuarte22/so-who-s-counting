@@ -59,7 +59,7 @@ export default function App() {
     debugger;
     switch (value) {
       case 1:
-        if (valorRueda == null) {
+        if (valorRueda == null || valorRueda === "") {
           alert("Gire la rueda primero");
           break;
         }
@@ -75,7 +75,7 @@ export default function App() {
         break;
 
       case 2:
-        if (valorRueda == null) {
+        if (valorRueda == null || valorRueda === "") {
           alert("Gire la rueda primero");
           break;
         }
@@ -91,7 +91,7 @@ export default function App() {
         }
         break;
       case 3:
-        if (valorRueda == null) {
+        if (valorRueda == null || valorRueda === "") {
           alert("Gire la rueda primero");
           break;
         }
@@ -108,7 +108,7 @@ export default function App() {
 
         break;
       case 4:
-        if (valorRueda == null) {
+        if (valorRueda == null || valorRueda === "") {
           alert("Gire la rueda primero");
           break;
         }
@@ -123,7 +123,7 @@ export default function App() {
         }
         break;
       case 5:
-        if (valorRueda == null) {
+        if (valorRueda == null || valorRueda === "") {
           alert("Gire la rueda");
           break;
         }
@@ -140,6 +140,7 @@ export default function App() {
         break;
       default:
     }
+    setValorRueda("");
     if (contPc === 5) {
       resultado();
       restart();
