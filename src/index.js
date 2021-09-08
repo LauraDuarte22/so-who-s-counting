@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Wheel from "./components/wheel";
-import { Alert } from "react-native";
-
+import Matriz from "./components/matriz";
 import "./styles.css";
 
 export default function App() {
@@ -12,7 +11,7 @@ export default function App() {
   const [pc, setPc] = useState(["■", "■", "■", "■", "■"]);
   const [player, setPlayer] = useState(["■", "■", "■", "■", "■"]);
   let [contPc, setContPc] = useState(0);
-  const matrizEstrategia = [
+  const [estrategia, setEstrategia] = useState([
     [5, 4, 3, 2, 1],
     [5, 3, 3, 2, 1],
     [5, 3, 3, 2, 1],
@@ -23,10 +22,10 @@ export default function App() {
     [2, 2, 1, 1, 1],
     [1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1]
-  ];
+  ]);
 
   const pcEstrategia = (contPc) => {
-    let pos = matrizEstrategia[valorRueda][contPc];
+    let pos = estrategia[valorRueda][contPc];
     let casillasVacias = 0;
     for (var i = 0; i < pc.length; i++) {
       if (pc[i] === "■") {
@@ -153,6 +152,7 @@ export default function App() {
       <h2>Mateo Lis Peña y Laura Duarte Pérez</h2>
       <h1>El resultado es: {valorRueda}</h1>
       <Wheel items={places} setValorRueda={setValorRueda} />
+      <Matriz />
       <div className="game">
         <h1>Jugador</h1>
         {player.map((choice, index) => (
