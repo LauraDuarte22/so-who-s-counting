@@ -1,18 +1,24 @@
 import React from "react";
 import { Table, InputGroup, FormControl } from "react-bootstrap";
+
 import "./index.css";
+
 export default class Matriz extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       checked: false,
-      estrategia: null
+      estrategia: {
+        ronda: [],
+        aleatorio: []
+      }
     };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(checked) {
     this.setState({ checked });
   }
+  saveMatriz() {}
   render() {
     return (
       <div>
@@ -37,12 +43,12 @@ export default class Matriz extends React.Component {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Número aleatorio</th>
-                  <th>Giro 1</th>
-                  <th>Giro 2</th>
-                  <th>Giro 3</th>
-                  <th>Giro 4</th>
-                  <th>Giro 5</th>
+                  <th>Número </th>
+                  <th> 1</th>
+                  <th> 2</th>
+                  <th> 3</th>
+                  <th> 4</th>
+                  <th> 5</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,7 +56,7 @@ export default class Matriz extends React.Component {
                   <td>0</td>
                   <td>
                     <InputGroup className="mb-3">
-                      <FormControl />
+                      <FormControl onChange={this.handleChange.bind(this)} />
                     </InputGroup>
                   </td>
                   <td>
@@ -303,7 +309,7 @@ export default class Matriz extends React.Component {
                 type="submit"
                 id="btn-flex"
                 className="btn btn-unique btn-sm"
-                onClick={() => this}
+                onClick={() => this.handleChange(false)}
               >
                 guardar
               </button>
