@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, InputGroup, FormControl, Button } from "react-bootstrap";
+import { Table, InputGroup, FormControl } from "react-bootstrap";
 import "./index.css";
 export default class Matriz extends React.Component {
   constructor(props) {
