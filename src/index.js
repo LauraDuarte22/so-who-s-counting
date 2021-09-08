@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Wheel from "./components/wheel";
-import Matriz from "./components/matriz";
+import Button from "./components/button";
+
 import "./styles.css";
 
 export default function App() {
@@ -56,7 +57,6 @@ export default function App() {
   };
 
   const handleClick = (value) => {
-    debugger;
     switch (value) {
       case 1:
         if (valorRueda == null || valorRueda === "") {
@@ -153,7 +153,7 @@ export default function App() {
       <h2>Mateo Lis Peña y Laura Duarte Pérez</h2>
       <h1>El resultado es: {valorRueda}</h1>
       <Wheel items={places} setValorRueda={setValorRueda} />
-      <Matriz />
+      <Button />
       <div className="game">
         <h1>Jugador</h1>
         {player.map((choice, index) => (
