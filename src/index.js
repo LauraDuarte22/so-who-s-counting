@@ -52,10 +52,12 @@ export default function App() {
     setTimeout(function () {
       setPc(["■", "■", "■", "■", "■"]);
       setPlayer(["■", "■", "■", "■", "■"]);
+      setContPc(0);
     }, 1000);
   };
 
   const handleClick = (value) => {
+    debugger;
     switch (value) {
       case 1:
         if (valorRueda == null) {
