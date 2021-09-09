@@ -122,6 +122,7 @@ export default function App() {
           pcEstrategia(contPc);
           contPc++;
           setContPc(contPc);
+          setValorRueda("");
         } else {
           alert("Esta casilla ya está ocupada");
         }
@@ -139,6 +140,7 @@ export default function App() {
           pcEstrategia(contPc);
           contPc++;
           setContPc(contPc);
+          setValorRueda("");
         } else {
           alert("Esta casilla ya está ocupada");
         }
@@ -155,6 +157,7 @@ export default function App() {
           pcEstrategia(contPc);
           contPc++;
           setContPc(contPc);
+          setValorRueda("");
         } else {
           alert("Esta casilla ya está ocupada");
         }
@@ -171,6 +174,7 @@ export default function App() {
           pcEstrategia(contPc);
           contPc++;
           setContPc(contPc);
+          setValorRueda("");
         } else {
           alert("Esta casilla ya está ocupada");
         }
@@ -187,13 +191,14 @@ export default function App() {
           pcEstrategia(contPc);
           contPc++;
           setContPc(contPc);
+          setValorRueda("");
         } else {
           alert("Esta casilla ya está ocupada");
         }
         break;
       default:
     }
-    setValorRueda("");
+
     if (contPc === 5) {
       resultado();
       restart();
