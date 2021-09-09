@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Wheel from "./components/wheel";
-import Button from "./components/button";
+import Matriz from "./components/matriz";
 
 import "./styles.css";
 
@@ -25,16 +25,55 @@ export default function App() {
     [1, 1, 1, 1, 1]
   ]);
 
+  const [showMatriz, setShowMatriz] = useState(false);
+  const renderMatriz = () => {
+    if (showMatriz) {
+      return <Matriz estrategia={estrategia} setEstrategia={setEstrategia} />;
+    } else {
+      return null;
+    }
+  };
+  const pred = () => {
+    restart();
+  };
+  const renderButtons = () => {
+    return (
+      <>
+        <div>
+          <button
+            type="button"
+            id="btn-nquote"
+            className="btn btn-success btn-sm"
+            onClick={() => pred()}
+          >
+            Estrategia predeterminada
+          </button>
+          <button
+            type="button"
+            id="btn-flex"
+            className="btn btn-unique btn-sm"
+            onClick={() => setShowMatriz(true)}
+          >
+            Crear estrategia
+          </button>
+          {renderMatriz()}
+        </div>
+      </>
+    );
+  };
+
   const pcEstrategia = (contPc) => {
+    console.log(estrategia);
     let pos = estrategia[valorRueda][contPc];
     let casillasVacias = 0;
-    for (var i = 0; i < pc.length; i++) {
-      if (pc[i] === "■") {
+    let auxiliarPc = pc;
+    for (var i = 0; i < auxiliarPc.length; i++) {
+      if (auxiliarPc[i] === "■") {
         casillasVacias++;
       }
-      if (pos === casillasVacias) {
-        pc[i] = valorRueda;
-        setPc(pc);
+      if (pos == casillasVacias) {
+        auxiliarPc[i] = valorRueda;
+        setPc(auxiliarPc);
         break;
       }
     }
@@ -52,6 +91,18 @@ export default function App() {
     setTimeout(function () {
       setPc(["■", "■", "■", "■", "■"]);
       setPlayer(["■", "■", "■", "■", "■"]);
+      setEstrategia([
+        [5, 4, 3, 2, 1],
+        [5, 3, 3, 2, 1],
+        [5, 3, 3, 2, 1],
+        [4, 3, 2, 2, 1],
+        [4, 3, 2, 2, 1],
+        [3, 2, 2, 1, 1],
+        [3, 2, 1, 1, 1],
+        [2, 2, 1, 1, 1],
+        [1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1]
+      ]);
       setContPc(0);
     }, 1000);
   };
@@ -153,7 +204,7 @@ export default function App() {
       <h2>Mateo Lis Peña y Laura Duarte Pérez</h2>
       <h1>El resultado es: {valorRueda}</h1>
       <Wheel items={places} setValorRueda={setValorRueda} />
-      <Button />
+      {renderButtons()}
       <div className="game">
         <h1>Jugador</h1>
         {player.map((choice, index) => (
@@ -165,7 +216,7 @@ export default function App() {
             {choice}
           </button>
         ))}
-        <h1>pc</h1>
+        <h1>PC</h1>
         {pc.map((choice, index) => (
           <li key={index}>{choice}</li>
         ))}
