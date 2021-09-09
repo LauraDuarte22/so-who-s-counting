@@ -28,7 +28,21 @@ export default function App() {
 
   const renderMatriz = () => {
     if (showMatriz) {
-      return <Matriz estrategia={estrategia} setEstrategia={setEstrategia} />;
+      return (
+        <>
+          <button
+            type="button"
+            id="btn-nquote"
+            className="btn btn-success btn-sm"
+            onClick={() => {
+              setShowMatriz(false);
+            }}
+          >
+            volver
+          </button>
+          <Matriz estrategia={estrategia} setEstrategia={setEstrategia} />
+        </>
+      );
     } else {
       return null;
     }
@@ -56,16 +70,7 @@ export default function App() {
           >
             Crear estrategia
           </button>
-          <button
-            type="button"
-            id="btn-nquote"
-            className="btn btn-success btn-sm"
-            onClick={() => {
-              setShowMatriz(false);
-            }}
-          >
-            volver
-          </button>
+
           {renderMatriz()}
         </div>
       </>
