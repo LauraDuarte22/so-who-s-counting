@@ -25,17 +25,16 @@ export default function App() {
     [1, 1, 1, 1, 1]
   ]);
 
-  const [showMatriz, setShowMatriz] = useState(false);
+  const [showMatriz, setShowMatriz] = useState();
   const renderMatriz = () => {
     if (showMatriz) {
       return <Matriz estrategia={estrategia} setEstrategia={setEstrategia} />;
     } else {
+      restart();
       return null;
     }
   };
-  const pred = () => {
-    restart();
-  };
+
   const renderButtons = () => {
     return (
       <>
@@ -44,7 +43,7 @@ export default function App() {
             type="button"
             id="btn-nquote"
             className="btn btn-success btn-sm"
-            onClick={() => pred()}
+            onClick={() => restart()}
           >
             Estrategia predeterminada
           </button>
