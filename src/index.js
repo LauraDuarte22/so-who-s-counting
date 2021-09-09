@@ -47,6 +47,7 @@ export default function App() {
       return null;
     }
   };
+
   const renderButtons = () => {
     return (
       <>
@@ -70,7 +71,6 @@ export default function App() {
           >
             Crear estrategia
           </button>
-
           {renderMatriz()}
         </div>
       </>
