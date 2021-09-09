@@ -12,6 +12,7 @@ export default function App() {
   const [pc, setPc] = useState(["■", "■", "■", "■", "■"]);
   const [player, setPlayer] = useState(["■", "■", "■", "■", "■"]);
   let [contPc, setContPc] = useState(0);
+  const [showMatriz, setShowMatriz] = useState(false);
   const [estrategia, setEstrategia] = useState([
     [5, 4, 3, 2, 1],
     [5, 3, 3, 2, 1],
@@ -25,7 +26,6 @@ export default function App() {
     [1, 1, 1, 1, 1]
   ]);
 
-  const [showMatriz, setShowMatriz] = useState(false);
   const renderMatriz = () => {
     if (showMatriz) {
       return <Matriz estrategia={estrategia} setEstrategia={setEstrategia} />;
@@ -33,7 +33,6 @@ export default function App() {
       return null;
     }
   };
-
   const renderButtons = () => {
     return (
       <>
@@ -44,7 +43,6 @@ export default function App() {
             className="btn btn-success btn-sm"
             onClick={() => {
               setShowMatriz(false);
-              renderMatriz(false);
               restart();
             }}
           >
@@ -57,6 +55,16 @@ export default function App() {
             onClick={() => setShowMatriz(true)}
           >
             Crear estrategia
+          </button>
+          <button
+            type="button"
+            id="btn-nquote"
+            className="btn btn-success btn-sm"
+            onClick={() => {
+              setShowMatriz(false);
+            }}
+          >
+            volver
           </button>
           {renderMatriz()}
         </div>
