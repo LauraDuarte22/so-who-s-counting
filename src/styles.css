@@ -17,6 +17,9 @@
   font-size: 50px;
   margin: 20px;
 }
+.game {
+  display: inline-table;
+}
 .game button {
   font-size: 30px;
   margin: 20px;

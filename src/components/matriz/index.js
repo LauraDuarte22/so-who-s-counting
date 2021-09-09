@@ -43,21 +43,9 @@ export default function Matriz(props) {
     }
   };
 
-  const renderMatriz = (value) => {
-    if (value) {
-      return (
-        <Matriz
-          estrategia={props.estrategia}
-          setEstrategia={props.setEstrategia}
-        />
-      );
-    } else {
-      return null;
-    }
-  };
   return (
     <div>
-      <Form striped bordered hover>
+      <Form>
         <thead>
           <tr>
             <th>Número </th>
