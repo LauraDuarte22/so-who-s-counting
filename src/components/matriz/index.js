@@ -79,7 +79,9 @@ export default function Matriz(props) {
           })}
         </tbody>
         <button
-          onClick={() => guardarDatos()}
+          onClick={() => {
+            guardarDatos();
+          }}
           type="button"
           id="btn-flex"
           className="btn btn-unique btn-sm"
