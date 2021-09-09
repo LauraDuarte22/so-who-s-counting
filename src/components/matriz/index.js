@@ -7,6 +7,7 @@ export default function Matriz(props) {
   const guardarDatos = async () => {
     let bandera = true;
     let cargoInfo = false;
+    let falla = false;
     let matrix = [
       [1, 1, 1, 1, 1],
       [1, 1, 1, 1, 1],
@@ -22,6 +23,44 @@ export default function Matriz(props) {
     for (let i = 0; i < props.estrategia.length; i++) {
       for (let j = 0; j < props.estrategia[i].length; j++) {
         let elemento = document.getElementById("elemento-" + i + "-" + j).value;
+        switch (j) {
+          case 0:
+            if (elemento > 0 && elemento <= 5) {
+              matrix[i][j] = await elemento;
+            } else {
+              falla = true;
+            }
+            break;
+          case 1:
+            if (elemento > 0 && elemento <= 4) {
+              matrix[i][j] = await elemento;
+            } else {
+              falla = true;
+            }
+            break;
+          case 2:
+            if (elemento > 0 && elemento <= 3) {
+              matrix[i][j] = await elemento;
+            } else {
+              falla = true;
+            }
+            break;
+          case 3:
+            if (elemento > 0 && elemento <= 2) {
+              matrix[i][j] = await elemento;
+            } else {
+              falla = true;
+            }
+            break;
+          case 4:
+            if (elemento > 0 && elemento <= 1) {
+              matrix[i][j] = await elemento;
+            } else {
+              falla = true;
+            }
+            break;
+          default:
+        }
         if (elemento !== undefined) {
           matrix[i][j] = await elemento;
         }
@@ -33,13 +72,14 @@ export default function Matriz(props) {
         }
       }
     }
-    if (bandera && cargoInfo) {
+
+    if (bandera && cargoInfo && !falla) {
       if (matrix !== undefined) {
         props.setEstrategia(matrix);
         alert("Estrategia guardada.");
       }
     } else {
-      alert("Faltan datos en la matriz.");
+      alert("error en los datos en la matriz.");
     }
   };
 
